@@ -1,0 +1,54 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# r-dockerbox
+   
+Tools for running R and common packages in Docker.
+
+   
+## r-statverse
+  
+Contains R/RStudio, tidyverse, a collection of common stats and visualization packages, and tools required to generate a pdf report.
+   
+   
+```bash
+docker run --rm -e USER="rstudio" -e PASSWORD="000" -p 5000:8787 -it kassambara/r-statverse
+```
+   
+This command will run the docker container `kassambara/r-statverse` on your local machine.    
+     
+RStudio will be available on your web browser at https://localhost:5000. The default `USER` is fixed to always being `rstudio`. The password in the above command is given as `000` but it can be set to anything. `5000` is the port being mapped between the docker container and your host machine. NOTE: password cannot be 'rstudio'.
+
+The user is logged into the 'rstudio' user by default. You can change this by specifying the option `-e USER=your_user_name`.
+    
+    
+## Mounting Additional Volume
+   
+   
+This might be useful for say mounting a local directory for use on the docker.
+   
+   
+```bash
+docker run --rm -e USER="rstudio" -e PASSWORD="000" -p 5000:8787 \
+  - v /path/to/local_working_dir:/docker_working_dir \
+  -it kassambara/r-statverse
+```
+  
+  
+## Websites
+  
+- [Datanovia](https://www.datanovia.com/en)
+  
+
+  
+
