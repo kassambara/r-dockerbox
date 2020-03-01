@@ -50,7 +50,7 @@ RUN install2.r --error --skipinstalled TRUE \
     survival \
     vcd \
     vcdExtra \
-    vca \
+    VCA \
     WRS2 \
     # Data vizualization --------------------------------
     cowplot \ 
