@@ -12,11 +12,16 @@ LABEL \
 #---------------------------------------------
 RUN  tlmgr update --self \
   && tlmgr install fancyhdr
+  
 
 
-# Install packages from MRAN
 #---------------------------------------------
-
+RUN apt-get update && apt-get install -y \
+  libx11-dev mesa-common-dev libglu1-mesa-dev \
+   && rm -rf /var/lib/apt/lists/*
+  
+  
+# Essential r packages ---------------------------
 RUN install2.r --error --deps TRUE \
     rstatix \
     ggpubr \
@@ -25,9 +30,13 @@ RUN install2.r --error --deps TRUE \
     ggcorrplot \
     caret
     
-
-RUN install2.r --error --skipinstalled TRUE \
-    # Stats------------------------------------
+# Basic statistics ---------------------------
+# First install system dependencies required for 
+# rgl and tolerance R packages installation
+RUN apt-get update \
+  && apt-get install -y libx11-dev mesa-common-dev libglu1-mesa-dev \
+  && rm -rf /var/lib/apt/lists/* \
+  && install2.r --error --skipinstalled TRUE \
     broom \
     boot \
     car \
@@ -42,7 +51,9 @@ RUN install2.r --error --skipinstalled TRUE \
     irr \
     lme4 \
     lmerTest \
+    maxstat \
     moments \
+    multcomp \
     mgcv \
     pROC \
     pwr \
@@ -51,30 +62,10 @@ RUN install2.r --error --skipinstalled TRUE \
     vcd \
     vcdExtra \
     VCA \
-    WRS2 \
-    # Data vizualization --------------------------------
-    cowplot \ 
-    gridExtra \
-    gplots \
-    gganimate \
-    GGally \
-    ggalt \
-    ggforce \
-    ggfortify \
-    ggpmisc \
-    ggrepel \
-    ggridges \
-    ggsci \
-    ggraph \
-    hexbin \
-    tidygraph \
-    lattice \
-    plotly \
-    RColorBrewer \
-    scatterplot3d \
-    sjPlot \
-    viridis \
-    # Principal Component Methods and Clustering ---------------------
+    WRS2 
+
+# Principal Component Methods and Clustering ---------------------
+RUN install2.r --error --skipinstalled TRUE \
     ade4 \
     ca \
     FactoMineR \
@@ -90,7 +81,11 @@ RUN install2.r --error --skipinstalled TRUE \
     circlize \
     clValid \
     pvclust \
-    # Modeling -------------------------------------------
+  && Rscript -e "BiocManager::install('ComplexHeatmap')"
+  
+    
+# Modeling -------------------------------------------
+RUN install2.r --error --skipinstalled TRUE \
     glmnet \
     klaR \
     leaps \
@@ -103,13 +98,45 @@ RUN install2.r --error --skipinstalled TRUE \
     splines \
     randomForest \
     xgboost \
-    # Displaying tables and styling R codes -----------
+    tidymodels \
+    DALEX
+ 
+ 
+# Data vizualization --------------------------------
+RUN install2.r --error --skipinstalled TRUE \
+    colorspace \
+    cowplot \ 
+    gridExtra \
+    gplots \
+    gganimate \
+    GGally \
+    ggforce \
+    ggfortify \
+    ggpmisc \
+    ggrepel \
+    ggridges \
+    ggsci \
+    ggraph \
+    hexbin \
+    tidygraph \
+    lattice \
+    plotly \
+    RColorBrewer \
+    scatterplot3d \
+    sjPlot \
+    viridis 
+    
+        
+# Reporting and styling R codes -----------
+RUN install2.r --error --skipinstalled TRUE \
     DT \
     kableExtra \
     xtable \
+    xlsx \
+    readxl \
+    writexl \
     styler \
-    lintr
+    lintr 
     
-# Bioconductor packages ---------------------------------
-RUN Rscript -e "BiocManager::install('ComplexHeatmap')"
+
 
