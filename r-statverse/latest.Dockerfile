@@ -1,10 +1,10 @@
-FROM rocker/verse:3.6.0
+FROM rocker/verse:3.6.2
 
 # METADATA
 #---------------------------------------------
 LABEL \
   author="Alboukadel Kassambara" \
-  description="Contains R/RStudio, Biostats packages and tools required to generate a pdf report" \
+  description="Contains R/RStudio, tidyverse, stats and visualization packages, and tools required to generate a pdf report" \
   maintainer="alboukadel.kassambara@gmail.com"
 
 
@@ -22,5 +22,94 @@ RUN install2.r --error --deps TRUE \
     ggpubr \
     survminer \
     factoextra \
-    ggcorrplot
+    ggcorrplot \
+    caret
     
+
+RUN install2.r --error --skipinstalled TRUE \
+    # Stats------------------------------------
+    broom \
+    boot \
+    car \
+    coin \
+    corrplot \
+    corrr \
+    DescTools \
+    deming \
+    emmeans \
+    exams \
+    gmodels \
+    irr \
+    lme4 \
+    lmerTest \
+    moments \
+    mgcv \
+    pROC \
+    pwr \
+    tolerance \
+    survival \
+    vcd \
+    vcdExtra \
+    vca \
+    WRS2 \
+    # Data vizualization --------------------------------
+    cowplot \ 
+    gridExtra \
+    gplots \
+    gganimate \
+    GGally \
+    ggalt \
+    ggforce \
+    ggfortify \
+    ggpmisc \
+    ggrepel \
+    ggridges \
+    ggsci \
+    ggraph \
+    hexbin \
+    tidygraph \
+    lattice \
+    plotly \
+    RColorBrewer \
+    scatterplot3d \
+    sjPlot \
+    viridis \
+    # Principal Component Methods and Clustering ---------------------
+    ade4 \
+    ca \
+    FactoMineR \
+    missMDA \
+    cluster \
+    pheatmap \
+    NbClust \
+    mclust \
+    som \
+    dendextend \
+    fpc \
+    dbscan \
+    circlize \
+    clValid \
+    pvclust \
+    # Modeling -------------------------------------------
+    glmnet \
+    klaR \
+    leaps \
+    mda \
+    modelr \
+    nnet \
+    party \
+    pls \
+    rpart \
+    splines \
+    randomForest \
+    xgboost \
+    # Displaying tables and styling R codes -----------
+    DT \
+    kableExtra \
+    xtable \
+    styler \
+    lintr
+    
+# Bioconductor packages ---------------------------------
+RUN Rscript -e "BiocManager::install('ComplexHeatmap')"
+
