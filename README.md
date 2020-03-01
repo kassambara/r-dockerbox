@@ -39,6 +39,11 @@ docker run --rm -e USER="rstudio" -e PASSWORD="000" -p 5000:8787 \
   -it kassambara/r-statverse
 ```
 
+## License
+
+The Dockerfiles in this repository are licensed under the GPL 2 or
+later.
+
 ## Websites
 
   - [Datanovia](https://www.datanovia.com/en)
