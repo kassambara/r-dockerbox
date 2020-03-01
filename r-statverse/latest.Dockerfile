@@ -29,7 +29,7 @@ RUN install2.r --error --deps TRUE \
 RUN apt-get update \
   && apt-get install -y libx11-dev mesa-common-dev libglu1-mesa-dev \
   && rm -rf /var/lib/apt/lists/* \
-  && install2.r --error --skipinstalled TRUE \
+  && install2.r --error --skipinstalled \
     broom \
     boot \
     car \
@@ -58,7 +58,7 @@ RUN apt-get update \
     WRS2 
 
 # Principal Component Methods and Clustering ---------------------
-RUN install2.r --error --skipinstalled TRUE \
+RUN install2.r --error --skipinstalled \
     ade4 \
     ca \
     FactoMineR \
@@ -78,7 +78,7 @@ RUN install2.r --error --skipinstalled TRUE \
   
     
 # Modeling -------------------------------------------
-RUN install2.r --error --skipinstalled TRUE \
+RUN install2.r --error --skipinstalled \
     glmnet \
     klaR \
     leaps \
@@ -96,7 +96,7 @@ RUN install2.r --error --skipinstalled TRUE \
  
  
 # Data vizualization --------------------------------
-RUN install2.r --error --skipinstalled TRUE \
+RUN install2.r --error --skipinstalled \
     colorspace \
     cowplot \ 
     gridExtra \
@@ -121,7 +121,7 @@ RUN install2.r --error --skipinstalled TRUE \
     
         
 # Reporting and styling R codes -----------
-RUN install2.r --error --skipinstalled TRUE \
+RUN install2.r --error --skipinstalled \
     DT \
     kableExtra \
     xtable \
