@@ -91,7 +91,6 @@ RUN install2.r --error --skipinstalled \
     splines \
     randomForest \
     xgboost \
-    tidymodels \
     DALEX
  
  
