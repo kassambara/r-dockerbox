@@ -129,6 +129,25 @@ RUN install2.r --error --skipinstalled \
     writexl \
     styler \
     lintr 
-    
 
+   
+# Latex packages required for kableextra -----------
+RUN  tlmgr update --self \
+  && tlmgr install \
+    fancyhdr \
+    booktabs \
+    colortbl \
+    float \
+    pdflscape \
+    tabu \
+    threeparttable \
+    threeparttablex \
+    multirow \
+    wrapfig \
+    makecell \
+    varwidth \
+    environ \
+    trimspaces \
+    ulem \
+    xcolor
 
