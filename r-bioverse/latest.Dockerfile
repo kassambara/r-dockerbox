@@ -14,30 +14,18 @@ RUN echo "options(defaultPackages=c(getOption('defaultPackages'),'BiocManager'))
   
 # Differential expression analysis
 # ------------------------------------------------------------
-RUN Rscript -e "\
-  pkgs <- c('impute', 'samr', 'DESeq2', 'limma', 'edgeR', 'annotables' ) \
-  for(pkg in pkgs){if(!requireNamespace(pkg, quietly = TRUE))} BiocManager::install(pkg) \
-  "
+RUN Rscript -e "BiocManager::install(c('impute', 'samr', 'DESeq2', 'limma', 'edgeR', 'annotables'))"
 
 
 # Pathway analysis analysis 
 # ------------------------------------------------------------
-RUN Rscript -e "\
-  pkgs <- c('DOSE', 'clusterProfiler', 'ReactomePA') \
-  for(pkg in pkgs){if(!requireNamespace(pkg, quietly = TRUE))} BiocManager::install(pkg) \
-  " 
+RUN Rscript -e "BiocManager::install(c('DOSE', 'clusterProfiler', 'ReactomePA'))"
   
 # DNAseq
 # ------------------------------------------------------------
-RUN Rscript -e "\
-  pkgs <- c('maftools') \
-  for(pkg in pkgs){if(!requireNamespace(pkg, quietly = TRUE))} BiocManager::install(pkg) \
-  "
+RUN Rscript -e "BiocManager::install(c('maftools'))"
   
   
 # MultiOmics
 # ------------------------------------------------------------
-RUN Rscript -e "\
-  pkgs <- c('MOFA') \
-  for(pkg in pkgs){if(!requireNamespace(pkg, quietly = TRUE))} BiocManager::install(pkg) \
-  "
+RUN Rscript -e "BiocManager::install(c('MOFA'))"
