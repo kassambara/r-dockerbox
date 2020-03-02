@@ -138,7 +138,6 @@ RUN  tlmgr update --self \
     booktabs \
     colortbl \
     float \
-    pdflscape \
     tabu \
     threeparttable \
     threeparttablex \
