@@ -1,4 +1,4 @@
-FROM rocker/verse:4.2.2
+FROM rocker/verse:3.6.2
 
 # METADATA
 #---------------------------------------------
